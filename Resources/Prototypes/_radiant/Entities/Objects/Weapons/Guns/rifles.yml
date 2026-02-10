@@ -1,6 +1,6 @@
 - type: entity
   name: TW-44
-  parent: [BaseWeaponRifle, BaseC2ContrabandUnredeemable]
+  parent: [ NFBaseGunMeleeAttackHigh, BaseWeaponRifle, BaseC2ContrabandUnredeemable]
   id: WeaponRifleTW44Acorp
   description: Стандартная винтовка использующаяся Аколит Корпорейшн и её подразделениями, для тех случаев когда энергетическое оружие не может справиться с угрозой. Использует патроны калибра .6,8-мм SPC.
   components:
@@ -69,7 +69,7 @@
 
 - type: entity
   name: сентинал-9
-  parent: [BaseWeaponRifle, BaseC3SyndicateContraband]
+  parent: [NFBaseGunMeleeAttackMedium, BaseWeaponRifle, BaseC3SyndicateContraband]
   id: WeaponRifleSentinel9Acorp
   description: Модернизированная акорп штурмовая винтовка для ведения полномаштабных боевых действий, по этой же причине редко используется. Использует патроны калибра .6,8-мм SPC.
   components:
@@ -125,7 +125,7 @@
 
 - type: entity
   name: Рейнджер
-  parent: [BaseWeaponRifle, BaseC2ContrabandUnredeemable]
+  parent: [NFBaseGunMeleeAttackMedium, BaseWeaponRifle, BaseC2ContrabandUnredeemable]
   id: WeaponRifleRanger
   description: Модернизированная винтовка с богатой историей, обеспечивает хороший баланс огневой мощи и точности даже спустя века. Использует .20 винтовочные патроны.
   components:
@@ -192,7 +192,7 @@
 
 - type: entity
   name: KX2801
-  parent: [BaseWeaponRifle, BaseC3SyndicateContraband]
+  parent: [NFBaseGunMeleeAttackMedium, BaseWeaponRifle, BaseC3SyndicateContraband]
   id: WeaponRifleKX2801
   description: Неудачный прототип армейской штурмовой винтовки, но все равно использующийся за счет дешевизны производства и невероятной убойности в узких помещениях, модернизирован для калибра .30
   components:
@@ -256,7 +256,7 @@
 
 - type: entity
   name: М-30 Аспид-С
-  parent: [BaseWeaponRifle, BaseC3SyndicateContraband]
+  parent: [NFBaseGunMeleeAttackMedium, BaseWeaponRifle, BaseC3SyndicateContraband]
   id: WeaponRifleGuardian
   description: Базовая, удешевлённая версия карабина М-30. Оружие надёжное, но без продвинутой модификации. Использует 30-й калибр.
   components:
@@ -356,7 +356,7 @@
   - type: Item
     sprite: _NF/Objects/Weapons/Guns/Rifles/novalitec1.rsi
   - type: Gun
-    fireRate: 2
+    fireRate: 2.5
     selectedMode: FullAuto
     availableModes:
       - FullAuto

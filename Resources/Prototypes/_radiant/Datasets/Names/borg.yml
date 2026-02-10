@@ -1,0 +1,6 @@
+# only used roundstart, names can be changed after
+- type: localizedDataset
+  id: NamesBorgFemale
+  values:
+    prefix: names-borg-female-dataset-
+    count: 58

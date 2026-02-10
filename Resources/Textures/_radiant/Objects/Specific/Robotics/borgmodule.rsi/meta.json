@@ -23,6 +23,12 @@
       "name": "mercenary"
     },
     {
+      "name": "mercenary_desert"
+    },
+    {
+      "name": "icon-first_aid"
+    },
+    {
       "name": "icon-mercenary"
     }
   ]

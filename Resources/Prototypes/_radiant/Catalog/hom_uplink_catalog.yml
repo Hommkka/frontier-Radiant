@@ -3,10 +3,10 @@
   id: UplinkHomClothingBackpackSatchelMeow
   name:  uplink-hom-backpack-name
   description: uplink-hom-backpack-desc
-  productEntity: ClothingBackpackSatchelMeow
+  productEntity: ClothingBackpackSatchelMeowSkin
   icon: { sprite: _radiant/Clothing/Back/Satchels/meow.rsi, state: icon }
   cost:
-    Cristalhom: 10
+    Cristalhom: 5
   categories:
     - UplinkHomUtility
   conditions:
@@ -19,10 +19,10 @@
   id: UplinkHomClothingBackpackMeow
   name:  uplink-hom-backpacks-name
   description: uplink-hom-backpacks-desc
-  productEntity: ClothingBackpackMeow
+  productEntity: ClothingBackpackMeowSkin
   icon: { sprite: _radiant/Clothing/Back/Backpacks/meow.rsi, state: icon }
   cost:
-    Cristalhom: 10
+    Cristalhom: 5
   categories:
     - UplinkHomUtility
   conditions:
@@ -118,7 +118,7 @@
   productEntity: ClothingOuterHardsuitMersc
   icon: { sprite: _radiant/Clothing/Hardsuits/mercs.rsi, state: icon }
   cost:
-    Cristalhom: 7
+    Cristalhom: 10
   categories:
     - UplinkHomUtility
   conditions:
@@ -134,7 +134,7 @@
   productEntity: ClothingOuterHardsuitMerscRS
   icon: { sprite: _radiant/Clothing/Hardsuits/merc.rsi, state: icon }
   cost:
-    Cristalhom: 7
+    Cristalhom: 10
   categories:
     - UplinkHomUtility
   conditions:
@@ -358,7 +358,7 @@
   productEntity: HyperEutacticBlade1
   icon: { sprite: _radiant/Objects/Weapons/Melee/e_cutlass1.rsi, state: e_cutlass_blade }
   cost:
-    Cristalhom: 20
+    Cristalhom: 70
   categories:
     - UplinkHomWeapons
   conditions:
@@ -374,7 +374,7 @@
   productEntity: HyperEutacticBlade2
   icon: { sprite: _radiant/Objects/Weapons/Melee/e_saw.rsi, state: e_cutlass_blade }
   cost:
-    Cristalhom: 20
+    Cristalhom: 70
   categories:
     - UplinkHomWeapons
   conditions:
@@ -388,11 +388,27 @@
   name:  uplink-hom-gun-name
   description: uplink-hom-gun-desc
   productEntity: WeaponShotgunPoorGun
-  icon: { sprite: _radiant/Objects/Weapons/Guns/Shotguns/pavpav2.rsi, state: icon }
+  icon: { sprite: _radiant/Objects/Weapons/Guns/Shotguns/pavpav2.rsi, state: mag-unshaded-1 }
   cost:
     Cristalhom: 25
   categories:
     - UplinkHomWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - HomUplink
+
+- type: listing
+  id: UplinkHomShockCollar
+  name:  uplink-hom-collar-name
+  description: uplink-hom-collar-desc
+  productEntity: ClothingNeckShockCollarToy
+#  icon: { sprite: _radiant/Objects/Storage/boxs.rsi, state: boxs }
+  cost:
+    Cristalhom: 2
+  categories:
+    - UplinkHomShuttle
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:

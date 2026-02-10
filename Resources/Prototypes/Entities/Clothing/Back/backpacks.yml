@@ -324,10 +324,16 @@
       - state: inhand-right # Frontier
       - state: inhand-right-unlit # Frontier
         shader: unshaded # Frontier
+  - type: Tag # Radiant sector
+    tags:
+    - BlueSpaceBagSkin
   - type: Storage
     maxItemSize: Huge
     grid:
     - 0,0,7,7 # Frontier: Was 0,0,19,9
+  - type: Construction # Radiant sector
+    graph: BlueSpaceBagSkinCrafting
+    node: start
 
 - type: entity
   parent: NFClothingBackpack # Frontier: ClothingBackpack<NFClothingBackpackClown

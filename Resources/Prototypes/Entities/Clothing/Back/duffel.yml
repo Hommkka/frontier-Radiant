@@ -259,6 +259,9 @@
       - state: inhand-right # Frontier
       - state: inhand-right-unlit # Frontier
         shader: unshaded # Frontier
+  - type: Tag # Radiant sector
+    tags:
+    - BlueSpaceBagSkin
   - type: Storage
     maxItemSize: Huge
     grid:
@@ -273,6 +276,9 @@
       - state: equipped-BACKPACK # Frontier
       - state: equipped-BACKPACK-unlit # Frontier
         shader: unshaded # Frontier
+  - type: Construction # Radiant sector
+    graph: BlueSpaceBagSkinCrafting
+    node: start
 
 - type: entity
   parent: [ NFClothingDuffel, BaseCentcommContraband ] # Frontier: ClothingBackpackDuffel<NFClothingDuffel

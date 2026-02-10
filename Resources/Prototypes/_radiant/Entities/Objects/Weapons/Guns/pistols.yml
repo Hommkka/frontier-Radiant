@@ -1,6 +1,6 @@
 - type: entity
   name: Виспер
-  parent: [BaseWeaponPistol, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable<BaseC1Contraband to match weapon description
+  parent: [ NFBaseGunMeleeAttackLow, BaseWeaponPistol, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable<BaseC1Contraband to match weapon description
   id: WeaponPistolWhisper
   description: Простой и легкий пистолет с глушителем, стреляет быстро с минимальной отдачей благодаря патронам .25 ACP, глушитель лишь приятное дополнение.
   components:
@@ -50,7 +50,7 @@
 - type: entity
   name: Ph-X
   id: PhX
-  parent: BaseItem
+  parent: [ NFBaseGunMeleeAttackLow, BaseItem ]
   description: Инновационный прототип компактного оружия, выпускающий кинетические заряды которые генерируются спустя время. Неизвестно что сейчас он делает в ваших руках.
   components:
   - type: Sprite

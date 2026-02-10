@@ -27,7 +27,24 @@
 
 - type: entity
   parent: NFClothingBackpack
+  id: ClothingBackpackMeowSkin
+  name: нераспакованная сумка
+  description: Лишь чехол, чтобы поместить в него другую сумку.
+  components:
+  - type: Sprite
+    sprite: _radiant/Clothing/Back/Backpacks/meow.rsi
+  - type: Tag
+    tags:
+    - BackpackMeowSkin
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,1,1
+
+- type: entity
+  parent: NFClothingBackpack
   id: ClothingBackpackMeow
+  categories: [ HideSpawnMenu ]
   name: рюкзак meow
   description: Рюкзак, который просто meow.
   components:
@@ -37,3 +54,6 @@
     maxItemSize: Huge
     grid:
     - 0,0,7,7 # Frontier: Was 0,0,19,9
+  - type: Construction
+    graph: BlueSpaceBagSkinCrafting
+    node: start

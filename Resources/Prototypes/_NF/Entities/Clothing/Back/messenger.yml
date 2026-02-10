@@ -656,6 +656,12 @@
       - state: inhand-right
       - state: inhand-right-unlit
         shader: unshaded
+  - type: Tag # Radiant sector
+    tags:
+    - BlueSpaceBagSkin
+  - type: Construction # Radiant sector
+    graph: BlueSpaceBagSkinCrafting
+    node: start
 
 #region Antagonists / Contraband
 - type: entity

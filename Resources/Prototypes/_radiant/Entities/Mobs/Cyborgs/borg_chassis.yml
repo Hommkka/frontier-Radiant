@@ -83,6 +83,9 @@
           visible: false
     - type: SiliconLawProvider
       laws: AcorpUniversalStatic
+    - type: RandomMetadata
+      nameSegments:
+        - NamesBorgFemale
     - type: BorgChassis
       maxModules: 10
       hasMindState: ascientist_e
@@ -131,6 +134,9 @@
       - AcorpCommand
     - type: TTS
       voice: Karina_petrova_tb
+    - type: RandomMetadata
+      nameSegments:
+        - NamesBorgFemale
     - type: Reflect
       spread: 360
     - type: MovementSpeedModifier
@@ -181,6 +187,9 @@
         - BorgModuleGeneric
         - BorgModuleEngineering
         - BorgModuleCargo
+    - type: RandomMetadata
+      nameSegments:
+        - NFNamesBorg
     - type: SiliconLawProvider
       laws: AcorpScrapStatic
     - type: TTS
@@ -426,7 +435,6 @@
     - type: TTS
       voice: Sentrybot
 
-
 - type: entity
   id: BaseBorgChassisDonat
   parent: BaseBorgChassis
@@ -465,29 +473,6 @@
       collection: FootstepBorgRadiant
       params:
         volume: -9
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 75
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          path: /Audio/Machines/warning_buzzer.ogg
-          params:
-            volume: 5
-    - trigger:
-        !type:DamageTrigger
-        damage: 300
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-      - !type:EmptyContainersBehaviour
-        containers:
-        - cell_slot
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
 
 - type: entity
   id: BorgChassisDonat
@@ -507,10 +492,13 @@
           shader: unshaded
           map: ["light"]
           visible: false
+    - type: RandomMetadata
+      nameSegments:
+        - NamesBorgFemale
     - type: SiliconLawProvider
       laws: MerStatic
     - type: BorgChassis
-      maxModules: 10
+      maxModules: 8
       moduleWhitelist:
         tags:
           - BorgModuleGeneric
@@ -520,19 +508,24 @@
     - type: ContainerFill
       containers:
         borg_brain:
-        - MMIFilled
+        - PositronicBrain
         borg_module:
-        - BorgModuleTopicals
-        - BorgModuleRescue
         - BorgModuleTool
         - BorgModuleJetpack
+        - BorgModuleFirstAid
         - BorgModuleCombatPinpointer
         - BorgModuleCombatCombined
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellMedium
     - type: InteractionPopup
       interactSuccessString: petting-success-syndicate-cyborg
       interactFailureString: petting-failure-syndicate-cyborg
       interactSuccessSound:
         path: /Audio/Ambience/Objects/periodic_beep.ogg
+    - type: FlashImmunity
     - type: TTS
       voice: Amina
     - type: Strap
