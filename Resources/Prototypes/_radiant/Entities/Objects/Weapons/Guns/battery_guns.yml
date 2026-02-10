@@ -1,6 +1,6 @@
 - type: entity
   name: энергетическая винтовка
-  parent: [BaseWeaponBattery, BaseGunWieldable]
+  parent: [ NFBaseGunMeleeAttackMedium, BaseWeaponBattery, BaseGunWieldable]
   id: WeaponLaserCarbineAcorp
   description: Чёрная энергетическая винтовка выглядит футуристично и минималистично. Гладкий корпус из композитных материалов без лишних деталей, лишь тонкие светящиеся линии вдоль ствола указывают на источник энергии. Вместо традиционного магазина — встроенный энергоэлемент, на прикладе расположен цифровой индикатор заряда. Стрельба — бесшумная, лишь короткий всплеск света и лёгкий гул при выстреле. Оружие ощущается лёгким, но мощным, будто концентрированная энергия заключена в идеальной форме.
   components:
@@ -33,7 +33,7 @@
 
 - type: entity
   name: энергетический пистолет
-  parent: [BaseWeaponBatterySmall, BaseCommandContraband] # Frontier: added BaseCommandContraband
+  parent: [ NFBaseGunMeleeAttackLow, BaseWeaponBatterySmall, BaseCommandContraband] # Frontier: added BaseCommandContraband
   id: WeaponEnergyGunMiniAcorp
   description: Энергетический пистолет для самообороны, имеет два режима стрельбы.
   components:

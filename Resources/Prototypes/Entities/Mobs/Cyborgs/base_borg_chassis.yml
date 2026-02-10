@@ -315,7 +315,8 @@
   components:
   - type: RandomMetadata
     nameSegments:
-      - NFNamesBorg # Frontier: use NF variant
+#      - NFNamesBorg # Frontier: use NF variant # Radiant Sector
+      - NamesBorgFemale # Radiant Sector
   - type: NpcFactionMember
     factions:
     - NanoTrasen

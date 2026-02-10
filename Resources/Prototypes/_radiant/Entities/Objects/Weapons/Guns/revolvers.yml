@@ -1,6 +1,6 @@
 - type: entity
   name: Маурин
-  parent: [BaseWeaponRevolver, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [ NFBaseGunMeleeAttackLow, BaseWeaponRevolver, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: WeaponRevolverMaurineAcorp
   description: Крепкий револьвер футуристического дизайна с массивным стволом и усиленным неподвижным барабаном. Его прочный металлический корпус и эргономическая рукоять делают его неплохим оружием даже для ближнего боя. Выглядит так, словно способен пробивать любую броню и наносить сокрушительный урон одним выстрелом. Использует патроны калибра .500 Magnum.
   components:

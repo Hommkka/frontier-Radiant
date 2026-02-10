@@ -26,7 +26,7 @@
     sprite: _radiant/Clothing/Head/acorp_kepka_gandonka.rsi
 
 - type: entity
-  parent: [ClothingHeadHelmetBase, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [ ClothingHeadHelmetArmoredBase, BaseC1Contraband ]
   id: ClothingHeadHelmetAcorp
   name: шлем акорп
   description: Защитный шлем акорп, выглядит стильно!
@@ -122,7 +122,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingHeadHelmetBase, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [ ClothingHeadHelmetArmoredBase, BaseC1Contraband ]
   id: ClothingHeadHelmetSeparatist
   name: шлем сепаратиста
   description: Шлем для защиты вашей самой важной части тела.
@@ -137,7 +137,7 @@
     - SecurityHelmet
 
 - type: entity
-  parent: [ClothingHeadHelmetBase, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [ ClothingHeadHelmetArmoredBase, BaseC1Contraband ]
   id: ClothingHeadHelmetSeparatist1
   name: шлем сепаратиста
   description: Шлем для защиты вашей самой важной части тела.
@@ -152,7 +152,7 @@
     - SecurityHelmet
 
 - type: entity
-  parent: [ClothingHeadHelmetBase, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [ ClothingHeadHelmetArmoredBase, BaseC1Contraband ]
   id: ClothingHeadHelmetSeparatist2
   name: шлем сепаратиста
   description: Шлем для защиты вашей самой важной части тела.
@@ -167,7 +167,7 @@
     - SecurityHelmet
 
 - type: entity
-  parent: [ClothingHeadHelmetBase, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [ ClothingHeadHelmetArmoredBase, BaseC1Contraband ]
   id: ClothingHeadHelmetSeparatist3
   name: каска
   description: Каска для защиты вашей самой важной части тела.
@@ -182,7 +182,7 @@
     - SecurityHelmet
 
 - type: entity
-  parent: [ClothingHeadHelmetBase] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [ ClothingHeadHelmetArmoredBase, BaseC1Contraband ]
   id: ClothingHeadHelmetMecRS
   name: шлем наемника
   description: Шлем для защиты вашей самой важной части тела.

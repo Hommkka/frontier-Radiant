@@ -1,6 +1,6 @@
 - type: entity
   name: G-5 Боец
-  parent: BaseWeaponSubMachineGun
+  parent: [ NFBaseGunMeleeAttackMedium, BaseWeaponSubMachineGun ]
   id: WeaponSubMachineGunFighter
   description: Легкое ПП от концерна Browning, высокая скорострельность и большой объем магазина компенсируется крайне низким поражающим воздействием. Использует патроны .25 ACP.
   components:
@@ -61,7 +61,7 @@
 
 - type: entity
   name: Вереск
-  parent: BaseWeaponSubMachineGun
+  parent: [ NFBaseGunMeleeAttackMedium, BaseWeaponSubMachineGun ]
   id: WeaponSubMachineGunVereskBlue
   description: Автоматический пистолет пулемет компактного размера, можно использовать как в одной руке, так и держать за рукоятку на цевье, поставляется с магазином ограниченной емкости. Использует патроны .35 авто.
   components:

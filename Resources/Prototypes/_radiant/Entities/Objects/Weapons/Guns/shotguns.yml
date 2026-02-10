@@ -13,7 +13,7 @@
 
 - type: entity
   name: Покровитель
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [ NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgunWieldable ]
   id: WeaponShotgunPatron
   description: Современная модификация устаревшего помпового ружья, старый но не бесполезный.
   components:
@@ -50,7 +50,7 @@
 
 - type: entity
   id: WeaponShotgunCshotGun
-  parent: [ NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgunWieldable ]
+  parent: [ NFBaseGunMeleeAttackBayonet, NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgunWieldable ]
   name: Рубеж
   description: |-
     Штатный дробовик ближнего боя. Используется для штурма, подавления сопротивления и защиты объектов. Эффективен на малых дистанциях.
@@ -61,17 +61,19 @@
     sprite: _radiant/Objects/Weapons/Guns/Shotguns/cshotgun.rsi
   - type: Item
     sprite: _radiant/Objects/Weapons/Guns/Shotguns/cshotgun_inhands_64x.rsi
-  - type: GunSpreadModifier
-    spread: 0.5
   - type: Gun
-    fireRate: 1
+    fireRate: 1.5
+    soundGunshot:
+      path: /Audio/_radiant/Weapons/Gunshots/wpn_sh_spapa12_plr_shot_01.ogg
+      params:
+          volume: -7
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-nanotrasen-munitions
   - type: BallisticAmmoProvider
     soundInsert:
-      path: /Audio/_radiant/Weapons/MagIn/Load-1.ogg
+      path: /Audio/_radiant/Weapons/MagIn/sh_spapa12_reload_loop_shell_insert_02.ogg
       params:
-        volume: -1.5
+        volume: -3
     soundRack:
       path: /Audio/_radiant/Weapons/Cock/shotgunpump2.ogg
       params:
@@ -86,17 +88,37 @@
   components:
   - type: Sprite
     sprite: _radiant/Objects/Weapons/Guns/Shotguns/pavpav2.rsi
+    layers:
+    - state: mag-unshaded-0
+    - state: mag-unshaded-1
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
   - type: Clothing
     sprite: _radiant/Objects/Weapons/Guns/Shotguns/pavpav2.rsi
   - type: Item
     sprite: _radiant/Objects/Weapons/Guns/Shotguns/pavpav2.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
   - type: GunSpreadModifier
     spread: 0.6
   - type: Gun
     fireRate: 1
+    soundGunshot:
+      path: /Audio/_radiant/Weapons/Gunshots/Fire-shotgun.ogg
+      params:
+          volume: -11
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+  - type: Tool
+    qualities:
+    - Prying
+  - type: ToolTileCompatible
+    delay: 10
+  - type: Prying
+    speedModifier: 0.6
   - type: BallisticAmmoProvider
+    capacity: 6
     soundInsert:
       path: /Audio/_radiant/Weapons/MagIn/Load-1.ogg
       params:

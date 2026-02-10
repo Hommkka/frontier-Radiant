@@ -8,7 +8,7 @@
     },
     "states": [
     {
-      "name": "icon",
+      "name": "mag-unshaded-1",
       "delays": [
         [
           0.1,
@@ -19,7 +19,18 @@
       ]
     },
     {
-      "name": "bolt-open",
+      "name": "mag-unshaded-2",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "mag-unshaded-0",
       "delays": [
         [
           0.1,

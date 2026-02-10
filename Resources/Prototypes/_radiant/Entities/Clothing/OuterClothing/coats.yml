@@ -193,7 +193,7 @@
     sprite: _radiant/Clothing/OuterClothing/Coats/wardennn.rsi
 
 - type: entity
-  parent: [ClothingOuterArmorHoS, ClothingOuterStorageBase, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityCommandContraband<BaseC2ContrabandUnredeemable
+  parent: ClothingOuterStorageBase
   id: ClothingOuterCoatRadiant
   name: модная куртка
   description: Вас видят в ней и такие ЭЭЭЙ ЧУВАААК! ЧУВАААК!
@@ -204,7 +204,7 @@
     sprite: _radiant/Clothing/OuterClothing/Coats/kyrkasinaa.rsi
 
 - type: entity
-  parent: [ClothingOuterArmorHoS, ClothingOuterStorageBase, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityCommandContraband<BaseC2ContrabandUnredeemable
+  parent: ClothingOuterStorageBase
   id: ClothingOuterCoatRadiantLong
   name: синий плащ
   description: Просто плащ.
@@ -215,7 +215,7 @@
     sprite: _radiant/Clothing/OuterClothing/Coats/plahprosto.rsi
 
 - type: entity
-  parent: [ClothingOuterArmorHoS, ClothingOuterStorageBase, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityCommandContraband<BaseC2ContrabandUnredeemable
+  parent: ClothingOuterStorageBase
   id: ClothingOuterCoatRadiantElite
   name: темный плащ
   description: Тяжёлый плащ из многослойной синтетической ткани глубокого чёрного цвета. Материал устойчив к вакуумной пыли, искрам и слабому лазерному излучению, почти не бликует при освещении.

@@ -305,7 +305,7 @@
 # NAVY
 
 - type: entity
-  parent: PDASeparatistsCommander
+  parent: BaseSecurityPDA
   id: PDANavyCadet
   name: КПК курсанта
   description: Стильный и крутой, но так только по началу.
@@ -323,12 +323,9 @@
     accentVColor: "#282828"
   - type: Icon
     state: pda-cadetfleet
-  - type: Contraband
-    turnInValues:
-      SeparatistToken: 1
 
 - type: entity
-  parent: PDASeparatistsCommander
+  parent: BaseSecurityPDA
   id: PDANavyBrigmedic
   name: КПК ОМС
   description: Пахнет Инсузином, странно...
@@ -346,12 +343,9 @@
     accentVColor: "#862510"
   - type: Icon
     state: pda-doctorfleet
-  - type: Contraband
-    turnInValues:
-      SeparatistToken: 1
 
 - type: entity
-  parent: PDASeparatistsCommander
+  parent: BaseSecurityPDA
   id: PDANavyOfficer
   name: КПК офицера
   description: Пахнет кровью и порохом.
@@ -369,12 +363,9 @@
     accentVColor: "#3a6b78"
   - type: Icon
     state: pda-fleetofficer
-  - type: Contraband
-    turnInValues:
-      SeparatistToken: 1
 
 - type: entity
-  parent: PDASeparatistsCommander
+  parent: BaseSecurityPDA
   id: PDANavyCaptain
   name: КПК капитана 
   description: Дорого ли он стоит? Хм...
@@ -392,12 +383,9 @@
     accentVColor: "#8900c9"
   - type: Icon
     state: pda-captainfleet
-  - type: Contraband
-    turnInValues:
-      SeparatistToken: 1
 
 - type: entity
-  parent: PDASeparatistsCommander
+  parent: BaseSecurityPDA
   id: PDANavyKomandor
   name: КПК коммандора
   description: Так и гласит, что вы непобедимы.
@@ -415,9 +403,6 @@
     accentVColor: "#8900c9"
   - type: Icon
     state: pda-commander
-  - type: Contraband
-    turnInValues:
-      SeparatistToken: 1
 
 # Phoenix
 

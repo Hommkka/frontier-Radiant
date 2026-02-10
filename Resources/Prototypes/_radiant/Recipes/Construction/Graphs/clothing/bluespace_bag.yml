@@ -1,0 +1,22 @@
+﻿- type: constructionGraph
+  id: BlueSpaceBagSkinCrafting
+  start: start
+  graph:
+    - node: start
+      tag: BlueSpaceBagSkin
+      edges:
+        - to: SatchelMeow
+          steps:
+            - tag: BackpackMeowSkin
+              doAfter: 2
+
+        - to: BackpackMeow
+          steps:
+            - tag: SatchelMeowSkin
+              doAfter: 2
+
+    - node: SatchelMeow
+      entity: ClothingBackpackMeow
+
+    - node: BackpackMeow
+      entity: ClothingBackpackSatchelMeow

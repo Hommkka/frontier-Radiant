@@ -201,6 +201,61 @@
   - type: BorgModuleIcon
     icon: { sprite: _radiant/Interface/Actions/actions_borg.rsi, state: combatpinpointer }
 
+- type: entity
+  id: BorgModuleFirstAid
+  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  name: модуль первой помощи
+  components:
+  - type: Item
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#3d3d1f"
+      - state: base-module-inhand-left
+        color: "#636337"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#15150b"
+      right:
+      - state: base-icon-inhand-right
+        color: "#3d3d1f"
+      - state: base-module-inhand-right
+        color: "#636337"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#15150b"
+  - type: Sprite
+    sprite: _radiant/Objects/Specific/Robotics/borgmodule.rsi
+    layers:
+    - state: mercenary_desert
+    - state: icon-first_aid
+  - type: Tag
+    tags:
+    - BorgModuleFirstAid
+  - type: DroppableBorgModule
+    moduleId: FirstAid
+    items:
+    - id: Brutepack
+      whitelist:
+        components:
+        - Healing
+      displayName: borg-placeholder-display-name-topical-medication
+    - id: Ointment
+      whitelist:
+        components:
+        - Healing
+      displayName: borg-placeholder-display-name-topical-medication
+    - id: Gauze
+      whitelist:
+        components:
+        - Healing
+      displayName: borg-placeholder-display-name-topical-medication
+  - type: BorgModuleIcon
+    icon: { sprite: _radiant/Interface/Actions/actions_borg.rsi, state: first-aid }
+  - type: BorgModule
+    defaultModule: True
+
 # acorp modules
 
 - type: entity
