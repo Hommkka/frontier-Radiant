@@ -433,6 +433,17 @@ public abstract class SharedBloodstreamSystem : EntitySystem
     }
 
     /// <summary>
+    /// Attempts to set the max blood level of this entity directly.
+    /// </summary>
+    public void SetBloodMaxVolume(Entity<BloodstreamComponent?> ent, FixedPoint2 volume)
+    {
+        if (!Resolve(ent.Owner, ref ent.Comp))
+            return;
+
+        ent.Comp.BloodMaxVolume = volume;
+    }
+
+    /// <summary>
     /// Spill all bloodstream solutions into a puddle.
     /// BLOOD FOR THE BLOOD GOD
     /// </summary>

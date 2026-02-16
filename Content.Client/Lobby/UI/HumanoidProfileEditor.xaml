@@ -99,6 +99,21 @@
 									<Button Name="VoicePlayButton" Text="{Loc 'humanoid-profile-editor-voice-play'}" MaxWidth="80" />
                                 </BoxContainer>
                                 <!-- Corvax-TTS-End -->
+                                <!-- Goobstation: port EE height/width sliders -->
+                                <!-- Height and Width -->
+                                <BoxContainer HorizontalExpand="True">
+                                    <Label Text="" Name="HeightLabel" />
+                                    <Control HorizontalExpand="True"/>
+                                    <Slider Name="HeightSlider" MinValue="0.5" MaxValue="2" Value="1" MinSize="150 0" />
+                                    <Button Name="HeightReset" Text="Reset" MaxWidth="60" />
+                                </BoxContainer>
+                                <BoxContainer HorizontalExpand="True">
+                                    <Label Text="" Name="WidthLabel" />
+                                    <Control HorizontalExpand="True"/>
+                                    <Slider Name="WidthSlider" MinValue="0.5" MaxValue="2" Value="1" MinSize="150 0" />
+                                    <Button Name="WidthReset" Text="Reset" MaxWidth="60" />
+                                </BoxContainer>
+                                <!-- end Goobstation -->
                             </BoxContainer>
                             <!-- Skin -->
                             <BoxContainer Margin="10" HorizontalExpand="True" Orientation="Vertical">

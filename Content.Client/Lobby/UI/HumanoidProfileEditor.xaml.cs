@@ -244,8 +244,33 @@ namespace Content.Client.Lobby.UI
                 SetSpecies(_species[args.Id].ID);
                 UpdateHairPickers();
                 OnSkinColorOnValueChanged();
+                UpdateHeightWidthSliders(); // Goobstation: port EE height/width sliders
+            };
+// begin Goobstation: port EE height/width sliders
+            #region Height and Width
+
+            UpdateHeightWidthSliders();
+            UpdateDimensions(SliderUpdate.Both);
+
+            HeightSlider.OnValueChanged += _ => { UpdateDimensions(SliderUpdate.Height); UpdateHeightWidthLabels(); };
+            WidthSlider.OnValueChanged += _ => { UpdateDimensions(SliderUpdate.Width); UpdateHeightWidthLabels(); };
+
+            HeightReset.OnPressed += _ =>
+            {
+                var prototype = _species.Find(x => x.ID == Profile?.Species) ?? _species.First();
+                HeightSlider.Value = prototype.DefaultHeight;
+                UpdateDimensions(SliderUpdate.Height);
             };
 
+            WidthReset.OnPressed += _ =>
+            {
+                var prototype = _species.Find(x => x.ID == Profile?.Species) ?? _species.First();
+                WidthSlider.Value = prototype.DefaultWidth;
+                UpdateDimensions(SliderUpdate.Width);
+            };
+
+            #endregion Height and Width
+            // end Goobstation: port EE height/width sliders
             #region Skin
 
             Skin.OnValueChanged += _ =>
@@ -1750,5 +1775,103 @@ namespace Content.Client.Lobby.UI
             ImportButton.Disabled = false;
             ExportButton.Disabled = false;
         }
+
+        // Goobstation: port EE height/width sliders
+        private enum SliderUpdate
+        {
+            Height,
+            Width,
+            Both
+        }
+
+        private void UpdateHeightWidthSliders()
+        {
+            if (Profile is null)
+                return;
+
+            var species = _prototypeManager.Index<SpeciesPrototype>(Profile.Species);
+
+            HeightSlider.Value = Profile.Height;
+            WidthSlider.Value = Profile.Width;
+
+            HeightSlider.MinValue = species.MinHeight;
+            HeightSlider.MaxValue = species.MaxHeight;
+
+            WidthSlider.MinValue = species.MinWidth;
+            WidthSlider.MaxValue = species.MaxWidth;
+
+            UpdateHeightWidthLabels();
+        }
+
+        private void UpdateHeightWidthLabels()
+        {
+            if (Profile is null || HeightLabel is null || WidthLabel is null)
+                return;
+
+            var heightPercent = (int)(Profile.Height * 100);
+            var widthPercent = (int)(Profile.Width * 100);
+
+            var heightCategory = GetHeightCategory(Profile.Height);
+            var widthCategory = GetWidthCategory(Profile.Width);
+
+            HeightLabel.Text = Loc.GetString("humanoid-character-profile-height",
+                ("height", heightCategory), ("percent", heightPercent));
+            WidthLabel.Text = Loc.GetString("humanoid-character-profile-width",
+                ("width", widthCategory), ("percent", widthPercent));
+        }
+
+        private int GetHeightCategory(float height)
+        {
+            return height switch
+            {
+                < 0.7f => 1,
+                < 0.85f => 2,
+                < 0.95f => 3,
+                < 1.0f => 4,
+                < 1.1f => 5,
+                < 1.2f => 6,
+                < 1.5f => 7,
+                < 1.8f => 8,
+                _ => 9
+            };
+        }
+
+        private int GetWidthCategory(float width)
+        {
+            return width switch
+            {
+                < 0.7f => 1,
+                < 0.85f => 2,
+                < 0.95f => 3,
+                < 1.0f => 4,
+                < 1.1f => 5,
+                < 1.2f => 6,
+                < 1.5f => 7,
+                < 1.8f => 8,
+                _ => 9
+            };
+        }
+
+        private void UpdateDimensions(SliderUpdate update)
+        {
+            if (Profile is null)
+                return;
+
+            switch (update)
+            {
+                case SliderUpdate.Height:
+                    Profile = Profile.WithHeight((float) HeightSlider.Value);
+                    break;
+                case SliderUpdate.Width:
+                    Profile = Profile.WithWidth((float) WidthSlider.Value);
+                    break;
+                case SliderUpdate.Both:
+                    Profile = Profile.WithHeight((float) HeightSlider.Value).WithWidth((float) WidthSlider.Value);
+                    break;
+            }
+
+            IsDirty = true;
+        }
+        // end Goobstation
     }
 }

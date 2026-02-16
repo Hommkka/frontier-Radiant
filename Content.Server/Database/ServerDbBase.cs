@@ -274,6 +274,8 @@ namespace Content.Server.Database
                 profile.ERPStatus,
                 profile.Species,
 				voice, // Corvax-TTS
+                1f, // Height - Goobstation: port EE height/width sliders
+                1f, // Width - Goobstation: port EE height/width sliders
                 profile.Age,
                 sex,
                 gender,

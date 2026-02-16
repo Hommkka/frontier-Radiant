@@ -94,6 +94,14 @@ namespace Content.Shared.Preferences
         [DataField]
         public Gender Gender { get; private set; } = Gender.Male;
 
+        // begin Goobstation: port EE height/width sliders
+        [DataField]
+        public float Height { get; set; } = 1f;
+
+        [DataField]
+        public float Width { get; set; } = 1f;
+        // end Goobstation: port EE height/width sliders
+
         [DataField] // Frontier: Bank balance
         public int BankBalance { get; private set; } = DefaultBalance; // Frontier: Bank balance
 
@@ -142,6 +150,8 @@ namespace Content.Shared.Preferences
             int erpStatus,
             string species,
 			string voice, // Corvax-TTS
+            float height, // Goobstation: port EE height/width sliders
+            float width, // Goobstation: port EE height/width sliders
             int age,
             Sex sex,
             Gender gender,
@@ -159,6 +169,8 @@ namespace Content.Shared.Preferences
             ERPStatus = (EnumERPStatus)erpStatus;
             Species = species;
 			Voice = voice; // Corvax-TTS
+            Height = height; // Goobstation: port EE height/width sliders
+            Width = width; // Goobstation: port EE height/width sliders
             Age = age;
             Sex = sex;
             Gender = gender;
@@ -179,7 +191,7 @@ namespace Content.Shared.Preferences
             HashSet<ProtoId<AntagPrototype>> antagPreferences,
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
             Dictionary<string, RoleLoadout> loadouts)
-            : this(other.Name, other.FlavorText, (int)other.ERPStatus, other.Species, other.Voice, other.Age, other.Sex, other.Gender, other.BankBalance, other.Appearance, other.SpawnPriority,
+            : this(other.Name, other.FlavorText, (int)other.ERPStatus, other.Species, other.Voice, other.Height, other.Width, other.Age, other.Sex, other.Gender, other.BankBalance, other.Appearance, other.SpawnPriority,
                 jobPriorities, other.PreferenceUnavailable, antagPreferences, traitPreferences, loadouts)
         {
         }
@@ -191,6 +203,8 @@ namespace Content.Shared.Preferences
                 (int)other.ERPStatus,
                 other.Species,
 				other.Voice,
+                other.Height,
+                other.Width,
                 other.Age,
                 other.Sex,
                 other.Gender,
@@ -253,10 +267,16 @@ namespace Content.Shared.Preferences
 
             var sex = Sex.Unsexed;
             var age = 18;
+            var height = 1f; // Goobstation: port EE height/width sliders
+            var width = 1f; // Goobstation: port EE height/width sliders
             if (prototypeManager.TryIndex<SpeciesPrototype>(species, out var speciesPrototype))
             {
                 sex = random.Pick(speciesPrototype.Sexes);
                 age = random.Next(speciesPrototype.MinAge, speciesPrototype.OldAge); // people don't look and keep making 119 year old characters with zero rp, cap it at middle aged
+                // begin Goobstation: port EE height/width sliders
+                height = random.NextFloat(speciesPrototype.MinHeight, speciesPrototype.MaxHeight);
+                width = random.NextFloat(speciesPrototype.MinWidth, speciesPrototype.MaxWidth);
+                // end Goobstation: port EE height/width sliders
             }
 
             // Corvax-TTS-Start
@@ -286,6 +306,8 @@ namespace Content.Shared.Preferences
                 Age = age,
                 Gender = gender,
                 Species = species,
+                Height = height, // Goobstation: port EE height/width sliders
+                Width = width, // Goobstation: port EE height/width sliders
 				Voice = voiceId, // Corvax-TTS
                 Appearance = HumanoidCharacterAppearance.Random(species, sex),
             };
@@ -332,7 +354,16 @@ namespace Content.Shared.Preferences
         {
             return new(this) { Species = species };
         }
-
+        // begin Goobstation: port EE height/width sliders
+        public HumanoidCharacterProfile WithHeight(float height)
+        {
+            return new(this) { Height = height };
+        }
+        public HumanoidCharacterProfile WithWidth(float width)
+        {
+            return new(this) { Width = width };
+        }
+        // end Goobstation: port EE height/width sliders
         // Corvax-TTS-Start
         public HumanoidCharacterProfile WithVoice(string voice)
         {
@@ -689,7 +720,7 @@ namespace Content.Shared.Preferences
 
             _traitPreferences.Clear();
             _traitPreferences.UnionWith(GetValidTraits(traits, prototypeManager));
-			
+
             // Corvax-TTS-Start
             prototypeManager.TryIndex<TTSVoicePrototype>(Voice, out var voice);
             if (voice is null || !CanHaveVoice(voice, Sex))
