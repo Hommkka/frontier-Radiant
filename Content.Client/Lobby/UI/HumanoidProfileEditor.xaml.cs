@@ -252,14 +252,16 @@ namespace Content.Client.Lobby.UI
             UpdateHeightWidthSliders();
             UpdateDimensions(SliderUpdate.Both);
 
-            HeightSlider.OnValueChanged += _ => { UpdateDimensions(SliderUpdate.Height); UpdateHeightWidthLabels(); };
-            WidthSlider.OnValueChanged += _ => { UpdateDimensions(SliderUpdate.Width); UpdateHeightWidthLabels(); };
+            HeightSlider.OnValueChanged += _ => { UpdateDimensions(SliderUpdate.Height); UpdateHeightWidthLabels(); ReloadPreview(); };
+            WidthSlider.OnValueChanged += _ => { UpdateDimensions(SliderUpdate.Width); UpdateHeightWidthLabels(); ReloadPreview(); };
 
             HeightReset.OnPressed += _ =>
             {
                 var prototype = _species.Find(x => x.ID == Profile?.Species) ?? _species.First();
                 HeightSlider.Value = prototype.DefaultHeight;
                 UpdateDimensions(SliderUpdate.Height);
+                UpdateHeightWidthLabels();
+                ReloadPreview();
             };
 
             WidthReset.OnPressed += _ =>
@@ -267,6 +269,8 @@ namespace Content.Client.Lobby.UI
                 var prototype = _species.Find(x => x.ID == Profile?.Species) ?? _species.First();
                 WidthSlider.Value = prototype.DefaultWidth;
                 UpdateDimensions(SliderUpdate.Width);
+                UpdateHeightWidthLabels();
+                ReloadPreview();
             };
 
             #endregion Height and Width
@@ -1808,16 +1812,40 @@ namespace Content.Client.Lobby.UI
             if (Profile is null || HeightLabel is null || WidthLabel is null)
                 return;
 
-            var heightPercent = (int)(Profile.Height * 100);
-            var widthPercent = (int)(Profile.Width * 100);
-
             var heightCategory = GetHeightCategory(Profile.Height);
             var widthCategory = GetWidthCategory(Profile.Width);
 
+            var heightCm = (int)MathF.Round(CalculateHeightCm(Profile.Height));
+            var weightKg = (int)MathF.Round(CalculateWeightKg(Profile.Height, Profile.Width));
+
             HeightLabel.Text = Loc.GetString("humanoid-character-profile-height",
-                ("height", heightCategory), ("percent", heightPercent));
+                ("height", heightCategory), ("cm", heightCm));
             WidthLabel.Text = Loc.GetString("humanoid-character-profile-width",
-                ("width", widthCategory), ("percent", widthPercent));
+                ("width", widthCategory), ("kg", weightKg));
+        }
+
+        private float CalculateHeightCm(float heightScale)
+        {
+            if (Profile is null)
+                return 0f;
+
+            var species = _prototypeManager.Index<SpeciesPrototype>(Profile.Species);
+            // AverageHeight is stored in cm for the species; scale by the height ratio.
+            return species.AverageHeight * heightScale;
+        }
+
+        private float CalculateWeightKg(float heightScale, float widthScale)
+        {
+            if (Profile is null)
+                return 0f;
+
+            var species = _prototypeManager.Index<SpeciesPrototype>(Profile.Species);
+            // Simple BMI-based approximation: BMI ~ 22; height in meters.
+            var heightM = (species.AverageHeight * heightScale) / 100f;
+            var bmi = 22f;
+            // Factor widthScale to reflect build (wider -> heavier)
+            var weight = bmi * heightM * heightM * widthScale;
+            return weight;
         }
 
         private int GetHeightCategory(float height)
