@@ -104,13 +104,13 @@
                                 <BoxContainer HorizontalExpand="True">
                                     <Label Text="" Name="HeightLabel" />
                                     <Control HorizontalExpand="True"/>
-                                    <Slider Name="HeightSlider" MinValue="0.5" MaxValue="2" Value="1" HorizontalExpand="True" />
+                                    <Slider Name="HeightSlider" MinValue="0.5" MaxValue="2" HorizontalExpand="True" />
                                     <Button Name="HeightReset" Text="{Loc 'humanoid-profile-editor-reset-button'}" MaxWidth="60" />
                                 </BoxContainer>
                                 <BoxContainer HorizontalExpand="True">
                                     <Label Text="" Name="WidthLabel" />
                                     <Control HorizontalExpand="True"/>
-                                    <Slider Name="WidthSlider" MinValue="0.5" MaxValue="2" Value="1" HorizontalExpand="True" />
+                                    <Slider Name="WidthSlider" MinValue="0.5" MaxValue="2" HorizontalExpand="True" />
                                     <Button Name="WidthReset" Text="{Loc 'humanoid-profile-editor-reset-button'}" MaxWidth="60" />
                                 </BoxContainer>
                                 <!-- end Goobstation -->

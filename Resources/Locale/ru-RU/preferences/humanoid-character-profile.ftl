@@ -17,3 +17,6 @@ humanoid-character-profile-height = Рост: { $cm } см
 
 # Weight (kg)
 humanoid-character-profile-width = Вес: { $kg } кг
+
+# Generic reset button text
+humanoid-profile-editor-reset-button = Сброс

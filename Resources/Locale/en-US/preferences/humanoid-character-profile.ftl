@@ -9,7 +9,7 @@ humanoid-character-profile-summary =
     *[other] It is
 } {$age} years old.
 # Height (cm)
-humanoid-character-profile-height = Рост: { $cm } см
+humanoid-character-profile-height = Height: { $cm } cm
 
 # Weight (kg)
-humanoid-character-profile-width = Вес: { $kg } кг
+humanoid-character-profile-width = Weight: { $kg } kg

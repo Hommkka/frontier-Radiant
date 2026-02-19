@@ -106,6 +106,10 @@ namespace Content.Client.Lobby.UI
 
         private bool _isDirty;
 
+        // temporary values driven by the sliders; not pushed into Profile until the user saves.
+        private float _workingHeight;
+        private float _workingWidth;
+
         private static readonly ProtoId<GuideEntryPrototype> DefaultSpeciesGuidebook = "Species";
 
         public event Action<List<ProtoId<GuideEntryPrototype>>>? OnOpenGuidebook;
@@ -168,6 +172,15 @@ namespace Content.Client.Lobby.UI
 
             SaveButton.OnPressed += args =>
             {
+                // commit any height/width edits before firing the save event
+                if (Profile != null)
+                {
+                    var species = _prototypeManager.Index<SpeciesPrototype>(Profile.Species);
+                    // clamp to species limits before saving
+                    var clampedHeight = Math.Clamp(_workingHeight, species.MinHeight, species.MaxHeight);
+                    var clampedWidth = Math.Clamp(_workingWidth, species.MinWidth, species.MaxWidth);
+                    Profile = Profile.WithHeight(clampedHeight).WithWidth(clampedWidth);
+                }
                 Save?.Invoke();
             };
 
@@ -795,12 +808,13 @@ namespace Content.Client.Lobby.UI
             if (Profile == null || !_prototypeManager.HasIndex(Profile.Species))
                 return;
 
-            PreviewDummy = _controller.LoadProfileEntity(Profile, JobOverride, ShowClothes.Pressed);
+            // apply the slider working values to the profile shown in preview
+            var previewProfile = Profile.WithHeight(_workingHeight).WithWidth(_workingWidth);
+            PreviewDummy = _controller.LoadProfileEntity(previewProfile, JobOverride, ShowClothes.Pressed);
             SpriteView.SetEntity(PreviewDummy);
             _entManager.System<MetaDataSystem>().SetEntityName(PreviewDummy, Profile.Name);
 
-            // Check and set the dirty flag to enable the save/reset buttons as appropriate.
-            SetDirty();
+            // Don't call SetDirty() here—the sliders already manage dirty state
         }
 
         /// <summary>
@@ -845,6 +859,9 @@ namespace Content.Client.Lobby.UI
             RefreshSpecies();
             RefreshTraits();
             RefreshFlavorText();
+
+            // make sure sliders (and our working copy) reflect the new profile
+            UpdateHeightWidthSliders();
             ReloadPreview();
 
             if (Profile != null)
@@ -1795,33 +1812,32 @@ namespace Content.Client.Lobby.UI
 
             var species = _prototypeManager.Index<SpeciesPrototype>(Profile.Species);
 
-            HeightSlider.Value = Profile.Height;
-            WidthSlider.Value = Profile.Width;
-
+            // Сначала устанавливаем видовые границы
             HeightSlider.MinValue = species.MinHeight;
             HeightSlider.MaxValue = species.MaxHeight;
 
             WidthSlider.MinValue = species.MinWidth;
             WidthSlider.MaxValue = species.MaxWidth;
 
+            // Устанавливаем значения (событие вызовется!)
+            HeightSlider.Value = Profile.Height;
+            WidthSlider.Value = Profile.Width;
+
             UpdateHeightWidthLabels();
-        }
+}
 
         private void UpdateHeightWidthLabels()
         {
             if (Profile is null || HeightLabel is null || WidthLabel is null)
                 return;
 
-            var heightCategory = GetHeightCategory(Profile.Height);
-            var widthCategory = GetWidthCategory(Profile.Width);
-
-            var heightCm = (int)MathF.Round(CalculateHeightCm(Profile.Height));
-            var weightKg = (int)MathF.Round(CalculateWeightKg(Profile.Height, Profile.Width));
+            var heightCm = (int)MathF.Round(CalculateHeightCm(HeightSlider.Value));
+            var weightKg = (int)MathF.Round(CalculateWeightKg(HeightSlider.Value, WidthSlider.Value));
 
             HeightLabel.Text = Loc.GetString("humanoid-character-profile-height",
-                ("height", heightCategory), ("cm", heightCm));
+                ("cm", heightCm));
             WidthLabel.Text = Loc.GetString("humanoid-character-profile-width",
-                ("width", widthCategory), ("kg", weightKg));
+                ("kg", weightKg));
         }
 
         private float CalculateHeightCm(float heightScale)
@@ -1885,21 +1901,28 @@ namespace Content.Client.Lobby.UI
             if (Profile is null)
                 return;
 
+            // update the working values instead of touching the Profile directly
             switch (update)
             {
                 case SliderUpdate.Height:
-                    Profile = Profile.WithHeight((float) HeightSlider.Value);
+                    _workingHeight = (float) HeightSlider.Value;
                     break;
                 case SliderUpdate.Width:
-                    Profile = Profile.WithWidth((float) WidthSlider.Value);
+                    _workingWidth = (float) WidthSlider.Value;
                     break;
                 case SliderUpdate.Both:
-                    Profile = Profile.WithHeight((float) HeightSlider.Value).WithWidth((float) WidthSlider.Value);
+                    _workingHeight = (float) HeightSlider.Value;
+                    _workingWidth = (float) WidthSlider.Value;
                     break;
             }
 
-            IsDirty = true;
+            // mark dirty if the working copy differs from the saved profile
+            if (Profile != null)
+            {
+                IsDirty = _workingHeight != Profile.Height || _workingWidth != Profile.Width;
+            }
         }
         // end Goobstation
     }
 }
+
