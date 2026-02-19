@@ -1813,6 +1813,7 @@ namespace Content.Client.Lobby.UI
             var species = _prototypeManager.Index<SpeciesPrototype>(Profile.Species);
 
             // Сначала устанавливаем видовые границы
+            // First set the slider range limits
             HeightSlider.MinValue = species.MinHeight;
             HeightSlider.MaxValue = species.MaxHeight;
 
@@ -1820,11 +1821,14 @@ namespace Content.Client.Lobby.UI
             WidthSlider.MaxValue = species.MaxWidth;
 
             // Устанавливаем значения (событие вызовется!)
+            // Set the values (the event will be triggered!)
             HeightSlider.Value = Profile.Height;
             WidthSlider.Value = Profile.Width;
 
             UpdateHeightWidthLabels();
 }
+
+        }
 
         private void UpdateHeightWidthLabels()
         {
