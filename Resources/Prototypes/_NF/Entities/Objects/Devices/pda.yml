@@ -129,6 +129,9 @@
       startingItem: HyperlinkBookNfsdSop
       priority: -2
       whitelist:
+        components:
+        - Passport
+        - ServiceCredential
         tags:
         - BookSpaceLaw
         - BookNfsdSop
@@ -173,6 +176,9 @@
       startingItem: HyperlinkBookNfsdSop
       priority: -2
       whitelist:
+        components:
+        - Passport
+        - ServiceCredential
         tags:
         - BookSpaceLaw
         - BookNfsdSop
@@ -201,6 +207,9 @@
       startingItem: HyperlinkBookNfsdSop
       priority: -2
       whitelist:
+        components:
+        - Passport
+        - ServiceCredential
         tags:
         - BookSpaceLaw
         - BookNfsdSop
@@ -229,6 +238,9 @@
       startingItem: HyperlinkBookNfsdSop
       priority: -2
       whitelist:
+        components:
+        - Passport
+        - ServiceCredential
         tags:
         - BookSpaceLaw
         - BookNfsdSop
@@ -257,6 +269,9 @@
       startingItem: HyperlinkBookNfsdSop
       priority: -2
       whitelist:
+        components:
+        - Passport
+        - ServiceCredential
         tags:
         - BookSpaceLaw
         - BookNfsdSop
@@ -285,6 +300,9 @@
       startingItem: HyperlinkBookNfsdSop
       priority: -2
       whitelist:
+        components:
+        - Passport
+        - ServiceCredential
         tags:
         - BookSpaceLaw
         - BookNfsdSop
@@ -313,6 +331,9 @@
       startingItem: HyperlinkBookNfsdSop
       priority: -2
       whitelist:
+        components:
+        - Passport
+        - ServiceCredential
         tags:
         - BookSpaceLaw
         - BookNfsdSop
@@ -345,6 +366,9 @@
       startingItem: HyperlinkBookNfsdSop
       priority: -2
       whitelist:
+        components:
+        - Passport
+        - ServiceCredential
         tags:
         - BookSpaceLaw
         - BookNfsdSop

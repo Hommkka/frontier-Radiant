@@ -22,7 +22,7 @@ public sealed class BodyScannerPlanTest
         var loc = server.ResolveDependency<ILocalizationManager>();
         await server.WaitAssertion(() =>
         {
-            var map = entities.System<SharedMapSystem>().CreateMap();
+            var map = server.ResolveDependency<IEntityManager>().System<SharedMapSystem>().CreateMap();
             var coords = new EntityCoordinates(map, 0, 0);
             var patient = entities.SpawnEntity("MobHuman", coords);
             var other = entities.SpawnEntity("MobHuman", coords);

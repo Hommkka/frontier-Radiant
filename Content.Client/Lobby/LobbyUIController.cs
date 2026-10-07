@@ -213,7 +213,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         if (selected == null)
             return;
 
-        _preferencesManager.UpdateCharacter(EditedProfile, EditedSlot.Value);
+        _preferencesManager.UpdateCharacter(EditedProfile, EditedSlot.Value, _profileEditor?.ReplaceCharacterOnSave == true);
         ReloadCharacterSetup();
     }
 

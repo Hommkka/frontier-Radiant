@@ -28,6 +28,7 @@ namespace Content.Server.Body.Systems
         [Dependency] private ISharedAdminLogManager _adminLogger = default!;
         [Dependency] private MobStateSystem _mobStateSystem = default!;
         [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
+        [Dependency] private Content.Server._radiant.Addictions.AddictionSystem _addictions = default!;
 
         private EntityQuery<OrganComponent> _organQuery;
         private EntityQuery<SolutionContainerManagerComponent> _solutionQuery;
@@ -145,6 +146,7 @@ namespace Content.Server.Body.Systems
                     continue;
 
                 var mostToRemove = FixedPoint2.Zero;
+                var activeMetabolism = false;
                 if (proto.Metabolisms is null)
                 {
                     if (ent.Comp1.RemoveEmpty)
@@ -192,7 +194,9 @@ namespace Content.Server.Body.Systems
                     }
 
                     var actualEntity = ent.Comp2?.Body ?? solutionEntityUid.Value;
+                    activeMetabolism = true;
                     var args = new EntityEffectReagentArgs(actualEntity, EntityManager, ent, solution, mostToRemove, proto, null, scale);
+                    _addictions.SetTolerance(args, proto, group.Id);
 
                     // do all effects, if conditions apply
                     foreach (var effect in entry.Effects)
@@ -219,7 +223,9 @@ namespace Content.Server.Body.Systems
                 // remove a certain amount of reagent
                 if (mostToRemove > FixedPoint2.Zero)
                 {
-                    solution.RemoveReagent(reagent, mostToRemove);
+                    var removed = solution.RemoveReagent(reagent, mostToRemove);
+                    if (activeMetabolism)
+                        _addictions.RegisterDose(ent.Comp2?.Body ?? solutionEntityUid.Value, proto, (float) removed);
                     // Frontier: do not count cryogenics chems against the reagent limit (to buff cryo meds)
                     if (!proto.Metabolisms.ContainsKey("Cryogenic"))
                         reagents++;
